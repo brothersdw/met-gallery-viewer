@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&family=Monsieur+La+Doulaise&display=swap");
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes swinging {
+  0% {
+    transform: translateX(3px) translateY(0px) rotateZ(-1deg);
+  }
+  25% {
+    transform: translateX(0px) translateY(0px) rotateZ(0deg);
+  }
+  50% {
+    transform: translateX(-3px) translateY(0px) rotateZ(1deg);
+  }
+  75% {
+    transform: translateX(0px) translateY(0px) rotateZ(0deg);
+  }
+  100% {
+    transform: translateX(3px) translateY(0px) rotateZ(-1deg);
+  }
+}
+
+@keyframes loadingRotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  10% {
+    transform: rotateZ(90deg);
+  }
+  20% {
+    transform: rotateZ(90deg);
+  }
+  30% {
+    transform: rotateZ(90deg);
+  }
+  40% {
+    transform: rotateZ(180deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  60% {
+    transform: rotateZ(180deg);
+  }
+  70% {
+    transform: rotateZ(270deg);
+  }
+  80% {
+    transform: rotateZ(270deg);
+  }
+  90% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.mg-painting-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.mg-painting-loader {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.mg-painting-loader h1 {
+  text-align: center;
+  font-size: 5rem;
+  font-family: "Monsieur La Doulaise", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.mg-painting-loader img {
+  max-width: 80px;
+  max-height: 80px;
+  margin-left: 10px;
+  vertical-align: center;
+  transform: rotateZ(0deg);
+  animation: loadingRotate 20s linear infinite;
+}
+
+.mg-painting {
+  opacity: 0;
+  transform: translateX(3px) translateY(0px) rotateZ(-1deg);
+  border: 10px solid #807d5c;
+  overflow: hidden;
+  animation: fadeIn 1s forwards ease, swinging 5s linear infinite;
+}
+
+.mg-painting img {
+  max-width: 380px;
+  max-height: 380px;
+}
