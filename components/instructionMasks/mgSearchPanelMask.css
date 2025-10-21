@@ -1,0 +1,77 @@
+.mg-search-panel-mask {
+  --r: 30px;
+  --x: 30px;
+  --y: 30px;
+}
+
+.mg-search-panel-mask {
+  /* height: 100vh;
+  width: 100vw; */
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-mask: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    transparent 98%,
+    black 100%
+  );
+  mask: radial-gradient(
+    circle var(--r) at var(--x) var(--y),
+    transparent 98%,
+    black 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  z-index: 4;
+}
+
+.mg-search-instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  pointer-events: all;
+  background-color: rgb(165, 171, 81);
+}
+
+.mg-search-instructions h1 {
+  font-size: 2.5rem;
+  font-family: "League Script", cursive;
+  font-weight: 600;
+  font-style: normal;
+  border-bottom: 2px solid rgb(8, 90, 162);
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.mg-search-instructions p {
+  font-size: 1.5rem;
+  font-family: "League Script", cursive;
+  font-weight: 600;
+  font-style: normal;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid rgb(8, 90, 162);
+}
+
+/* .mg-btn {
+  text-align: center;
+  padding: 5px;
+  background-color: rgb(165, 171, 81);
+  box-shadow: 0px 10px 15px 7px rgba(0, 0, 0, 0.8);
+  position: absolute;
+}
+
+.mg-btn:hover {
+  font-size: 1.7rem;
+  padding: 7px;
+  background-color: rgb(115, 119, 54);
+  color: rgb(129, 14, 14);
+  cursor: pointer;
+  box-shadow: 0px 10px 15px 10px rgba(0, 0, 0, 0.8);
+} */

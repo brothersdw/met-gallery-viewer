@@ -103,9 +103,15 @@
   border: 10px solid #807d5c;
   overflow: hidden;
   animation: fadeIn 1s forwards ease, swinging 5s linear infinite;
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.8);
 }
 
 .mg-painting img {
   max-width: 380px;
   max-height: 380px;
+}
+.mg-painting h2 {
+  max-width: 380px;
+  max-height: 380px;
+  text-align: center;
 }

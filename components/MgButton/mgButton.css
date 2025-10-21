@@ -1,0 +1,28 @@
+.mg-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.mg-btn {
+  color: #090979;
+  font-family: "League Script", cursive;
+  font-weight: 600;
+  font-style: normal;
+  text-align: center;
+  pointer-events: all;
+  background-color: #a5ab51;
+  box-shadow: 0px 10px 15px 7px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  transition: 0.3s ease;
+}
+
+.mg-btn:hover {
+  /* background-color: #737736; */
+  background-color: #aeb456;
+  color: rgb(129, 14, 14);
+  cursor: pointer;
+  box-shadow: 0px 10px 20px 9px rgba(0, 0, 0, 0.2);
+}

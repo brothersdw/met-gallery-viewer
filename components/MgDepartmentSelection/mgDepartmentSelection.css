@@ -1,0 +1,55 @@
+.mg-department-selection-items-container {
+  /* width: fit-content; */
+  /* padding: 10px; */
+  /* position: fixed; */
+  /* z-index: 2; */
+  /* padding: 10px; */
+  background-color: rgb(165, 171, 81);
+  box-shadow: 0px 10px 15px 7px rgba(0, 0, 0, 0.4);
+}
+
+.mg-select-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+}
+
+.mg-select-item p {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  font-size: 1.5rem;
+  font-family: "League Script", cursive;
+  font-weight: 800;
+  font-style: normal;
+  /* margin-bottom: 10px; */
+}
+
+.mg-select-item p:hover {
+  background-color: #737736;
+}
+
+.mg-unselected-item p {
+  color: #090979;
+  border-bottom: 1px solid #085aa2;
+}
+
+.mg-selected-item p {
+  color: #810e0e;
+  border-bottom: 1px solid #810e0e;
+}
+
+.mg-unselected-item p:hover {
+  color: #810e0e;
+  border-bottom: 1px solid #810e0e;
+}
+
+.mg-selected-item p:hover {
+  color: #090979;
+  border-bottom: 1px solid #085aa2;
+}

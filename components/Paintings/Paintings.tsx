@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+// import { useEffect, useState } from "react";
 import { Painting, PaintingWall } from ".";
 import "./paintingsStyle.css";
-const baseSearchUrl =
-  "https://collectionapi.metmuseum.org/public/collection/v1/search";
-const baseObjectUrl =
-  "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
+import { MgLoading } from "../MgLoading";
+import type { PaintingObj } from "../../MetGalleryViewerApp";
+// const baseSearchUrl =
+//   "https://collectionapi.metmuseum.org/public/collection/v1/search";
+// const baseObjectUrl =
+//   "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
 
-const Paintings = () => {
+type PaintingsProps = {
+  fetchedPaintings: PaintingObj[] | null;
+  loadingPaintings: boolean;
+};
+
+const Paintings = ({ fetchedPaintings, loadingPaintings }: PaintingsProps) => {
   //   const [paintingImages, setPaintingImages] = useState<string[] | null>();
   const paintingImages = [
     "https://images.metmuseum.org/CRDImages/ep/web-large/DT1396.jpg",
@@ -78,14 +84,34 @@ const Paintings = () => {
         </h1>
       </div>
     );
-
+  if (loadingPaintings)
+    return (
+      <PaintingWall>
+        <MgLoading />
+      </PaintingWall>
+    );
   return (
     <PaintingWall>
-      {paintingImages.map((painting, idx) => {
-        return (
-          <Painting src={painting} key={`painting-${idx}`} elementIndex={idx} />
-        );
-      })}
+      {!fetchedPaintings
+        ? paintingImages.map((painting, idx) => {
+            return (
+              <Painting
+                src={painting}
+                key={`painting-${idx}`}
+                elementIndex={idx}
+              />
+            );
+          })
+        : fetchedPaintings.map((painting, idx) => {
+            return (
+              <Painting
+                src={painting.primaryImageSmall}
+                key={`painting-${idx}`}
+                elementIndex={idx}
+                paintingInfo={painting}
+              />
+            );
+          })}
     </PaintingWall>
   );
 };
