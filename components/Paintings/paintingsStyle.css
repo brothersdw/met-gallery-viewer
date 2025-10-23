@@ -68,6 +68,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .mg-painting-loader {
@@ -110,8 +111,32 @@
   max-width: 380px;
   max-height: 380px;
 }
-.mg-painting h2 {
-  max-width: 380px;
-  max-height: 380px;
+.mg-no-art h2 {
+  margin: auto;
+  font-size: 2.5rem;
   text-align: center;
+  color: rgb(129, 14, 14);
+}
+
+.mg-no-art {
+  background-color: #a5ab51;
+  color: #090979;
+  font-family: "Imperial Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+
+.mg-no-art p {
+  font-size: 2rem;
+}
+
+@media (max-width: 700px) {
+  .mg-no-art h2 {
+    font-size: 2rem;
+  }
+  .mg-no-art p {
+    font-size: 1.5rem;
+  }
 }

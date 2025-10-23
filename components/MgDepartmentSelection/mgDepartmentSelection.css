@@ -53,3 +53,9 @@
   color: #090979;
   border-bottom: 1px solid #085aa2;
 }
+
+@media (max-width: 700px) {
+  .mg-select-item p {
+    font-size: 1rem;
+  }
+}

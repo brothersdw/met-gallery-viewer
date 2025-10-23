@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 import {
   Paintings,
   MgHeader,
@@ -24,29 +24,34 @@ export type PaintingObj = {
   department: string;
 };
 const MetGalleryViewerApp = () => {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const [departments, setDepartments] = useState<Departments[] | null>(null);
   const [selectedDepartments, setSelectedDepartment] = useState<number[]>([0]);
   const [closeInstructions, setCloseInstructions] = useState<boolean>(false);
-  const [pages, setPages] = useState<[][]>([]);
+  const [artObjectIds, setArtObjectIds] = useState<number[]>([]);
+  const [pages, setPages] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
   // const [query, setQuery] = useState<string | null>(null);
   const [paintings, setPaintings] = useState<PaintingObj[] | null>(null);
   const [loadingPaintings, setLoadingPaintings] = useState<boolean>(false);
+  const [closePanel, setClosePanel] = useState<boolean>(false);
   const onClose = () => {
-    queryClient.setQueryData(["mg-ui"], { instructionsClosed: true });
+    // queryClient.setQueryData(["mg-ui"], { instructionsClosed: true });
     setCloseInstructions(true);
   };
 
   const handleSearch = async () => {
-    const departmentObjectIds = (
-      await api.fetchPaintingObjectIdsByDepartments(selectedDepartments)
-    ).departmentObjectIds;
-    const currentPages = [];
-    for (let i = 0; i < departmentObjectIds.length; i += 10) {
-      currentPages.push(departmentObjectIds.slice(i, i + 10));
-    }
-    setPages(currentPages);
+    setLoadingPaintings(true);
+    setClosePanel(true);
+    const departmentObjects = await api.fetchPaintingObjectIdsByDepartments(
+      selectedDepartments
+    );
+    const departmentObjectIds = departmentObjects.departmentObjectIds;
+    const totalPages = departmentObjects.totalPages;
+    setArtObjectIds(departmentObjectIds);
+    setPages(totalPages);
+    setClosePanel(false);
+    setLoadingPaintings(false);
   };
 
   const handleSetPage = (pageNum: number) => {
@@ -54,15 +59,14 @@ const MetGalleryViewerApp = () => {
   };
 
   useEffect(() => {
-    const instructionsClosed = queryClient.getQueryData<{
-      instructionsClosed: boolean;
-    }>(["mg-ui"]);
-    if (instructionsClosed?.instructionsClosed) {
-      setCloseInstructions(true);
-    }
+    // const instructionsClosed = queryClient.getQueryData<{
+    //   instructionsClosed: boolean;
+    // }>(["mg-ui"]);
+    // if (instructionsClosed?.instructionsClosed) {
+    //   setCloseInstructions(true);
+    // }
     const getDepartments = async () => {
       const departmentsObj = await api.fetchDepartments();
-      console.log("departments:", departmentsObj);
       const departmentsArr: Departments[] = [
         { departmentId: 0, displayName: "All" },
         ...departmentsObj.departments,
@@ -73,11 +77,10 @@ const MetGalleryViewerApp = () => {
   }, []);
 
   useEffect(() => {
-    if (pages.length < 1) return;
+    if (artObjectIds.length < 1) return;
     setLoadingPaintings(true);
     const getPaintings = async () => {
-      const paintingObjs = await api.fetchPaintings(pages, page);
-      console.log("painting objs:", paintingObjs);
+      const paintingObjs = await api.fetchPaintings(artObjectIds, page);
       setPaintings(paintingObjs);
       setLoadingPaintings(false);
     };
@@ -87,7 +90,10 @@ const MetGalleryViewerApp = () => {
     <div className="mg-app-container">
       {!closeInstructions && <MgSearchPanelMask onClose={onClose} />}
       <MgHeader />
-      <MgPanel killInstructionPrompt={setCloseInstructions}>
+      <MgPanel
+        killInstructionPrompt={setCloseInstructions}
+        closePanel={closePanel}
+      >
         <MgButton
           onClick={handleSearch}
           fontSize={3}
@@ -105,7 +111,9 @@ const MetGalleryViewerApp = () => {
           />
         )}
       </MgPanel>
-      <MgPages pages={pages.length} onSetPage={handleSetPage} />
+      {artObjectIds.length > 0 && (
+        <MgPages pages={pages} onSetPage={handleSetPage} />
+      )}
       <Paintings
         fetchedPaintings={paintings}
         loadingPaintings={loadingPaintings}

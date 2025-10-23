@@ -1,13 +1,78 @@
-.mg-pages-container {
+.mg-pages-outer-container {
+  width: 70vw;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.mg-pages-page-count-container {
+  /* flex: 0 0 auto; */
+  margin: 20px auto;
   width: fit-content;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a5ab51;
+  color: #090979;
+  font-family: "League Script", cursive;
+  font-weight: 600;
+  font-style: normal;
+  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  /* margin-inline: auto; */
+}
+
+/* .mg-page-count {
+  width: 100px;
+} */
+
+.mg-pages-btn-container {
+  font-size: 1.3rem;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #a5ab51;
+  color: #090979;
+  font-family: "League Script", cursive;
+  font-weight: 600;
+  font-style: normal;
+  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  cursor: pointer;
+}
+
+.mg-pages-btn-container:hover {
+  font-size: 1.5rem;
+  background-color: #aeb456;
+  color: rgb(129, 14, 14);
+  box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+.mg-pages-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
   padding: 10px;
-  max-width: 80%;
+  width: 100%;
   height: 40px;
   background-color: #a5ab51;
   box-shadow: inset 0px 2px 5px 2px rgba(0, 0, 0, 0.6);
   margin: 20px auto;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.mg-pages-track {
+  display: flex;
+  width: max-content;
+  margin-inline: auto; /* centers content when shorter than box */
 }
 
 .mg-page {
@@ -35,4 +100,21 @@
   color: rgb(129, 14, 14);
   cursor: pointer;
   box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 700px) {
+  .mg-pages-outer-container {
+    width: 70vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .mg-pages-btn-container {
+    font-size: 0.8rem;
+    width: auto;
+    padding: 5px;
+  }
 }

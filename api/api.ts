@@ -4,6 +4,17 @@ const baseUrl = `https://collectionapi.metmuseum.org/public/collection/v1/`;
 const searchUrl = `${baseUrl}/search`;
 const objectUrl = `${baseUrl}/objects`;
 
+const getPages = (num: number) => {
+  const remainder = num % 10;
+  const divisibleNum = num - remainder;
+  const pages = !remainder
+    ? divisibleNum / 10
+    : remainder && divisibleNum
+    ? divisibleNum / 10 + 1
+    : 1;
+  return pages;
+};
+
 type Params = Record<string, string | number | boolean | undefined>;
 const api = {
   fetchDepartments: async () => {
@@ -15,9 +26,11 @@ const api = {
     if (departmentIds.length < 2 && departmentIds[0] === 0) {
       const fetchDepartmentObjectIds = await axios.get(objectUrl);
       const departmentObjectIds = fetchDepartmentObjectIds.data;
+
+      const totalPages = getPages(Number(departmentObjectIds.total));
       return {
         departmentObjectIds: departmentObjectIds.objectIDs,
-        totalPaintings: departmentObjectIds.total,
+        totalPages: totalPages,
       };
     }
     let departmentsString = "";
@@ -32,9 +45,10 @@ const api = {
     };
     const fetchDepartmentObjectIds = await axios.get(objectUrl, { params });
     const departmentObjectIds = fetchDepartmentObjectIds.data;
+    const totalPages = getPages(Number(departmentObjectIds.total));
     return {
       departmentObjectIds: departmentObjectIds.objectIDs,
-      totalPaintings: departmentObjectIds.total,
+      totalPages: totalPages,
     };
   },
   fetchPaintingObjectIdsBySearch: async (query: string | undefined) => {
@@ -44,14 +58,16 @@ const api = {
     };
     const fetchPaintingObjectIds = await axios.get(searchUrl, { params });
     const paintingObjectIds = fetchPaintingObjectIds.data;
+    const totalPages = getPages(Number(paintingObjectIds.total));
     return {
       paintingObjectIds: paintingObjectIds.objectIDs,
-      totalPaintings: paintingObjectIds.total,
+      totalPages,
     };
   },
-  fetchPaintings: async (objectIds: [][], page: number) => {
-    const currentPageObjectNums = objectIds[page];
+  fetchPaintings: async (objectIds: number[], page: number) => {
+    const currentPageObjectNums = objectIds.slice(page * 10, page * 10 + 10);
     const paintingObjects = [];
+    console.log("should be fetching object nums for:", currentPageObjectNums);
     for (let objNum of currentPageObjectNums) {
       const paintingObjData = await axios.get(`${objectUrl}/${objNum}`);
       const paintingObj = paintingObjData.data;

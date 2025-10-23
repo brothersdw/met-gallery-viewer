@@ -13,13 +13,21 @@ const Painting = ({ paintingInfo, src, elementIndex }: PaintingPropsType) => {
 
   if (!src) {
     return (
-      <div className="mg-painting" style={animationDelay}>
+      <div className="mg-painting mg-no-art" style={animationDelay}>
         <h2>Currently there is no image available for this piece of art.</h2>
         <p>
-          <strong>Title:</strong> {paintingInfo!.title}
+          <strong>Title:</strong>{" "}
+          {paintingInfo!.title !== "" &&
+          typeof paintingInfo?.title !== undefined
+            ? paintingInfo?.title
+            : "Title unavailable"}
         </p>
         <p>
-          <strong>Department:</strong> {paintingInfo!.department}
+          <strong>Department:</strong>{" "}
+          {paintingInfo!.department !== "" &&
+          typeof paintingInfo?.department !== undefined
+            ? paintingInfo?.department
+            : "Department name unavailable"}
         </p>
         <p>
           <strong>By:</strong>{" "}

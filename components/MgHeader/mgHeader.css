@@ -15,3 +15,9 @@
   color: rgb(255, 235, 120);
   /* border-bottom: 2px solid rgb(255, 235, 120); */
 }
+
+@media (max-width: 700px) {
+  .mg-header h1 {
+    font-size: 2.5rem;
+  }
+}
