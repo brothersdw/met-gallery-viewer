@@ -19,10 +19,11 @@
   transition: 0.3s ease;
 }
 
-.mg-btn:hover {
-  /* background-color: #737736; */
-  background-color: #aeb456;
-  color: rgb(129, 14, 14);
-  cursor: pointer;
-  box-shadow: 0px 10px 20px 9px rgba(0, 0, 0, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .mg-btn:hover {
+    background-color: #aeb456;
+    color: rgb(129, 14, 14);
+    cursor: pointer;
+    box-shadow: 0px 10px 20px 9px rgba(0, 0, 0, 0.2);
+  }
 }

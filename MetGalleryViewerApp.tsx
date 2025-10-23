@@ -12,6 +12,7 @@ import {
 } from "./components";
 import { api } from "./api";
 import "./metGalleryViewerApp.css";
+import { Footer } from "../../components";
 export type Departments = {
   departmentId: number;
   displayName: string;
@@ -117,6 +118,12 @@ const MetGalleryViewerApp = () => {
       <Paintings
         fetchedPaintings={paintings}
         loadingPaintings={loadingPaintings}
+      />
+      <Footer
+        fontFamily={`"League Script", cursive`}
+        fontStyle="normal"
+        fontWeight="600"
+        borderTop="1px solid #a5ab51"
       />
     </div>
   );

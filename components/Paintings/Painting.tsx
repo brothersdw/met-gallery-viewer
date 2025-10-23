@@ -14,7 +14,7 @@ const Painting = ({ paintingInfo, src, elementIndex }: PaintingPropsType) => {
   if (!src) {
     return (
       <div className="mg-painting mg-no-art" style={animationDelay}>
-        <h2>Currently there is no image available for this piece of art.</h2>
+        <h2>Currently there is no image available for this piece of art</h2>
         <p>
           <strong>Title:</strong>{" "}
           {paintingInfo!.title !== "" &&
