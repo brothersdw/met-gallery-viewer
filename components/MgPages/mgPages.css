@@ -105,6 +105,23 @@
   }
 }
 
+@media (max-width: 1000px) {
+  .mg-pages-outer-container {
+    width: 70vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .mg-pages-btn-container {
+    font-size: 0.8rem;
+    width: auto;
+    padding: 5px;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .mg-pages-btn-container:hover {
     font-size: 1.5rem;
