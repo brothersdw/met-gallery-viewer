@@ -24,6 +24,7 @@ const MgDepartmenSelection = ({ options, setState }: MgDropDownPropsType) => {
   }, [selectedItems]);
   return (
     <div className="mg-department-selection-items-container">
+      <h1>Departments</h1>
       {options.map((option) => {
         return (
           <MgDepartmentItem
