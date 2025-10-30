@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useQueryClient } from "@tanstack/react-query";
 import {
   Paintings,
   MgHeader,
@@ -25,19 +24,16 @@ export type PaintingObj = {
   department: string;
 };
 const MetGalleryViewerApp = () => {
-  // const queryClient = useQueryClient();
   const [departments, setDepartments] = useState<Departments[] | null>(null);
   const [selectedDepartments, setSelectedDepartment] = useState<number[]>([0]);
   const [closeInstructions, setCloseInstructions] = useState<boolean>(false);
   const [artObjectIds, setArtObjectIds] = useState<number[]>([]);
   const [pages, setPages] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
-  // const [query, setQuery] = useState<string | null>(null);
   const [paintings, setPaintings] = useState<PaintingObj[] | null>(null);
   const [loadingPaintings, setLoadingPaintings] = useState<boolean>(false);
   const [closePanel, setClosePanel] = useState<boolean>(false);
   const onClose = () => {
-    // queryClient.setQueryData(["mg-ui"], { instructionsClosed: true });
     setCloseInstructions(true);
   };
 
@@ -60,12 +56,6 @@ const MetGalleryViewerApp = () => {
   };
 
   useEffect(() => {
-    // const instructionsClosed = queryClient.getQueryData<{
-    //   instructionsClosed: boolean;
-    // }>(["mg-ui"]);
-    // if (instructionsClosed?.instructionsClosed) {
-    //   setCloseInstructions(true);
-    // }
     const getDepartments = async () => {
       const departmentsObj = await api.fetchDepartments();
       const departmentsArr: Departments[] = [
