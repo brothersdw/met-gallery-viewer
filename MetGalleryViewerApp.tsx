@@ -24,7 +24,6 @@ export type PaintingObj = {
   department: string;
 };
 const MetGalleryViewerApp = () => {
-  // Comment for test
   const [departments, setDepartments] = useState<Departments[] | null>(null);
   const [selectedDepartments, setSelectedDepartment] = useState<number[]>([0]);
   const [closeInstructions, setCloseInstructions] = useState<boolean>(false);
